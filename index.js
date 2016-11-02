@@ -26,45 +26,37 @@ function addToCart(item){
   cart.push({item: price})
   console.log(`${item} has been added to your cart.`)
   return cart
-
 }
-function viewCart() {
-  const l = cart.length
 
-  if (!l) {
-    return console.log("Your shopping cart is empty.")
+function viewCart(){
+  const leng = cart.length
+  if (!leng) {
+  return console.log("Your shopping cart is empty.")
   }
 
-  const itemsAndPrices = []
+  const words = []
 
-  for (let i = 0; i < l; i++) {
-    let itemAndPrice = cart[i]
-    let item = Object.keys(itemAndPrice)[0]
-    let price = itemAndPrice[item]
-
-    itemsAndPrices.push(`${item} at \$${price}`)
-  }
-
- return console.log(`In your cart, you have ${itemsAndPrices.join(', ')}.`)
+  for (let i = 0; i < leng; i++){
+    let both = cart[i]
+    let item = Object.keys(both)[0]
+    let price = both[item]
+    words.push(`${item} at \$${price}`) 
+    }
+  console.log(`In your cart, you have ${words.join(', ')}.`)
 }
 
 
-// function viewCart(){
-// const leng = cart.length
-// if (!leng) {
-//  return console.log("Your shopping cart is empty.")
-// } ;
-//   const cart_words = []
-
-// for (let i=0; i < leng; i++){
-//   let both = cart[i]
-//   let item = Object.keys(both)[0]
-//   let price = both[item]
-
-//   cart_words.push(`${item} at \$${price}`)
-    
-//   }
-
-// console.log(`In your cart, you have ${cart_words.join(', ')}.`)
-
-// }
+function removeFromCart(item){
+  let thing = false
+  for (let i = 0; i < cart.length; i++) {
+   if (cart[i].hasOwnProperty(item)) {
+      thing = true
+      cart = cart.slice(0, i).concat(cart.slice(i +1))
+   }
+  }
+  
+  if (!thing){
+    console.log("That item is not in your cart.")
+  }
+  return cart
+}
